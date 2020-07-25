@@ -1,7 +1,8 @@
 A lightweight ASP.NET Core Throttling.
 
 ## Read more about it:
-https://www.christianmihai.com/lightweight-aspnet-core-throttling/
+[https://christianmihai.com/lightweight-aspnet-core-throttling/](https://www.christianmihai.com/lightweight-aspnet-core-throttling/)
+
 
 ## Roadmap:
 
