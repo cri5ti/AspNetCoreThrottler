@@ -4,6 +4,18 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>ChristianMihai.AspNetCoreThrottler</AssemblyName>
         <RootNamespace>ChristianMihai.AspNetCoreThrottler</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Christian Mihai</Authors>
+        <Company />
+        <Product>AspNetCoreThrottler</Product>
+        <PackageProjectUrl>https://github.com/cri5ti/AspNetCoreThrottler</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/cri5ti/AspNetCoreThrottler</RepositoryUrl>
+        <PackageTags>aspnet.core throttling rate ratelimit throttle</PackageTags>
+        <Description>AspNetCoreThrottler is an ASPNET .Core request throttler that delays requests to maintain a desired request rate, or if a hard threshold is met, it will completely reject requests.</Description>
+        <PackageId>AspNetCoreThrottler</PackageId>
+        <Version>1.0.1</Version>
+        <AssemblyVersion>1.0.1.0</AssemblyVersion>
+        <FileVersion>1.0.1.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>

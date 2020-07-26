@@ -6,7 +6,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
   public static class RateLimitingExtensions
   {
-    public static IApplicationBuilder UseRateLimiting(this IApplicationBuilder app)
+    public static IApplicationBuilder UseThrottling(this IApplicationBuilder app)
     {
       return app.UseMiddleware<RateThrottlerMiddleware>();
     }

@@ -44,18 +44,17 @@ namespace ChristianMihai.AspNetCoreThrottler
 
       var requestDuration = TimeSpan.FromMilliseconds(opts.RequestRateMs);
       var maxLimit = requestDuration * opts.LimitHard;
+      var entry = _partitions.GetOrAdd(key, (k, arg) => new RateLimitEntry(arg), maxLimit);
 
-      var bucket = _partitions.GetOrAdd(key, (k, arg) => new RateLimitEntry(arg), maxLimit);
-
-      if (bucket.ExpiresAt < now)
+      if (entry.ExpiresAt < now)
       {
         _logger.LogDebug("Expired bucket, resetting.");
-        bucket.Reset(maxLimit);
+        entry.Reset(maxLimit);
       }
 
       // TODO expired buckets cleanup
 
-      var queueSize = (int)((bucket.CurrentLevel - now) / requestDuration);
+      var queueSize = (int)((entry.CurrentLevel - now) / requestDuration);
 
       _logger.LogTrace("New request, queue size: {queueSize}", queueSize);
 
@@ -68,14 +67,14 @@ namespace ChristianMihai.AspNetCoreThrottler
         return;
       }
 
-      bucket.Next(requestDuration);
+      entry.Next(requestDuration);
 
       // throttling
       if (opts.LimitSoft > 0 && queueSize >= opts.LimitSoft)
       {
         _logger.LogTrace("Throttling request: {queueSize} / {softLimit}", queueSize, opts.LimitSoft);
 
-        var delay = bucket.CurrentLevel - now;
+        var delay = entry.CurrentLevel - now;
         if (delay.Milliseconds > 10)
           await Task.Delay(delay);
       }
