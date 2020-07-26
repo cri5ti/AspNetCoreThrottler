@@ -24,7 +24,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   app.UseThrottling();
   // ...
 }
- 
+```
 
 
 ## Read more about it:
